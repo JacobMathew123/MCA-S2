@@ -1,0 +1,105 @@
+mca@mca-HP-Pro-Tower-280-G9-E-PCI-Desktop-PC:~/Desktop$ sudo mysql
+[sudo] password for mca: 
+Sorry, try again.
+[sudo] password for mca: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.44-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| college            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use college;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> create table course(Coursecode varchar(20),Coursename varchar(20),Credit
+int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| course            |
+| student           |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> DESC student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Roll  | int         | YES  |     | NULL    |       |
+| Name  | varchar(20) | YES  |     | NULL    |       |
+| DOB   | date        | YES  |     | NULL    |       |
+| Place | varchar(20) | YES  |     | NULL    |       |
+| Ph_no | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> DESC course;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Coursecode | varchar(20) | YES  |     | NULL    |       |
+| Coursename | varchar(20) | YES  |     | NULL    |       |
+| Credit     | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> Alter table student drop ph_no;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> Alter table student add Aadharno varchar(30);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> Alter table student modify column Roll varchar;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> Alter table student modify column Roll varchar(20);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table course;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop college;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'college' at line 1
+mysql> ^C
+mysql> drop database college;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+
+
